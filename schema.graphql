@@ -1,0 +1,22 @@
+type DirectDeposit @entity {
+  id: String! # string(uint256)
+  pending: Boolean!
+  completed: Boolean!
+  refunded: Boolean!
+  sender: Bytes! # address
+  fallbackUser: Bytes! # address
+  zkAddress_diversifier: Bytes! # bytes10
+  zkAddress_pk: Bytes! # bytes32
+  deposit: BigInt! # uint64
+  bnInit: BigInt!
+  tsInit: BigInt!
+  txInit: Bytes!
+  bnClosed: BigInt
+  tsClosed: BigInt
+  txClosed: Bytes
+}
+
+type LastSyncBlock @entity {
+  id: Bytes! 
+  block: BigInt
+}

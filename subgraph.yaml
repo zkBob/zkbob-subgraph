@@ -1,0 +1,49 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DDQueue
+    network: local
+    source:
+      abi: DD
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DirectDeposit
+      abis:
+        - name: DD
+          file: ./abis/DD.json
+      eventHandlers:
+        - event: CompleteDirectDepositBatch(uint256[])
+          handler: handleCompleteDirectDepositBatch
+        - event: RefundDirectDeposit(indexed uint256,address,uint256)
+          handler: handleRefundDirectDeposit
+        - event: SubmitDirectDeposit(indexed address,indexed
+            uint256,address,(bytes10,bytes32),uint64)
+          handler: handleSubmitDirectDeposit
+      file: ./src/dd.ts
+  - kind: ethereum
+    name: Pool
+    network: local
+    source:
+      abi: Pool
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - LastSyncBlock
+      abis:
+        - name: Pool
+          file: ./abis/Pool.json
+      eventHandlers:
+        - event: Message(indexed uint256,indexed bytes32,bytes)
+          handler: handleMessage
+      file: ./src/pool.ts

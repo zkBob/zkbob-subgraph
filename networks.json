@@ -1,0 +1,22 @@
+{
+  "local": {
+    "DDQueue": {
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "startBlock": 0
+    },
+    "Pool": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "startBlock": 0
+    }
+  },
+  "goerli": {
+    "DDQueue": {
+      "address": "0xE4C77B7787cC116A5E1549c5BB36DE07732100Bb",
+      "startBlock": 8507064
+    },
+    "Pool": {
+      "address": "0x49661694a71B3Dab9F25E86D5df2809B170c56E6",
+      "startBlock": 8507064
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "optimism-goerli": {
+      "DDQueue": {
+        "address": "0x598223503E5A6d8d5b6a6cD5266Bc803169C9633",
+        "startBlock": 7637201
+      },
+      "Pool": {
+        "address": "0x55B81b0730399974Ccad8AC858e766Cf54126596",
+        "startBlock": 7637201
+      }
+    }
+  }

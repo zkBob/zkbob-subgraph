@@ -1,0 +1,12 @@
+{
+    "goerli": {
+      "DDQueue": {
+        "address": "0xE4C77B7787cC116A5E1549c5BB36DE07732100Bb",
+        "startBlock": 8507064
+      },
+      "Pool": {
+        "address": "0x49661694a71B3Dab9F25E86D5df2809B170c56E6",
+        "startBlock": 8507064
+      }
+    }
+  }

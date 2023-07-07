@@ -156,6 +156,19 @@ export class DirectDeposit extends Entity {
     this.set("deposit", Value.fromBigInt(value));
   }
 
+  get fee(): BigInt {
+    let value = this.get("fee");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set fee(value: BigInt) {
+    this.set("fee", Value.fromBigInt(value));
+  }
+
   get bnInit(): BigInt {
     let value = this.get("bnInit");
     if (!value || value.kind == ValueKind.NULL) {

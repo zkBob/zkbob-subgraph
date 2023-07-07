@@ -100,8 +100,71 @@ export class SubmitDirectDepositZkAddressStruct extends ethereum.Tuple {
   }
 }
 
+export class DD__getDirectDepositResultDepositStruct extends ethereum.Tuple {
+  get fallbackReceiver(): Address {
+    return this[0].toAddress();
+  }
+
+  get sent(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get deposit(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get fee(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get timestamp(): BigInt {
+    return this[4].toBigInt();
+  }
+
+  get status(): i32 {
+    return this[5].toI32();
+  }
+
+  get diversifier(): Bytes {
+    return this[6].toBytes();
+  }
+
+  get pk(): Bytes {
+    return this[7].toBytes();
+  }
+}
+
 export class DD extends ethereum.SmartContract {
   static bind(address: Address): DD {
     return new DD("DD", address);
+  }
+
+  getDirectDeposit(depositId: BigInt): DD__getDirectDepositResultDepositStruct {
+    let result = super.call(
+      "getDirectDeposit",
+      "getDirectDeposit(uint256):((address,uint96,uint64,uint64,uint40,uint8,bytes10,bytes32))",
+      [ethereum.Value.fromUnsignedBigInt(depositId)]
+    );
+
+    return changetype<DD__getDirectDepositResultDepositStruct>(
+      result[0].toTuple()
+    );
+  }
+
+  try_getDirectDeposit(
+    depositId: BigInt
+  ): ethereum.CallResult<DD__getDirectDepositResultDepositStruct> {
+    let result = super.tryCall(
+      "getDirectDeposit",
+      "getDirectDeposit(uint256):((address,uint96,uint64,uint64,uint40,uint8,bytes10,bytes32))",
+      [ethereum.Value.fromUnsignedBigInt(depositId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      changetype<DD__getDirectDepositResultDepositStruct>(value[0].toTuple())
+    );
   }
 }

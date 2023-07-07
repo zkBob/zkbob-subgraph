@@ -85,5 +85,66 @@
     ],
     "name":"SubmitDirectDeposit",
     "type":"event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "depositId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getDirectDeposit",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "fallbackReceiver",
+            "type": "address"
+          },
+          {
+            "internalType": "uint96",
+            "name": "sent",
+            "type": "uint96"
+          },
+          {
+            "internalType": "uint64",
+            "name": "deposit",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "fee",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint40",
+            "name": "timestamp",
+            "type": "uint40"
+          },
+          {
+            "internalType": "enum DD.DirectDepositStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes10",
+            "name": "diversifier",
+            "type": "bytes10"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "pk",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct DD.DirectDeposit",
+        "name": "deposit",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

@@ -1,7 +1,8 @@
 import {
   CompleteDirectDepositBatch as CompleteDirectDepositBatchEvent,
   RefundDirectDeposit as RefundDirectDepositEvent,
-  SubmitDirectDeposit as SubmitDirectDepositEvent
+  SubmitDirectDeposit as SubmitDirectDepositEvent,
+  DD as DirectDepoistQueue
 } from "../generated/DDQueue/DD"
 import {
   DirectDeposit,
@@ -28,6 +29,9 @@ export function handleSubmitDirectDeposit(
   entity.pending = true
   entity.completed = false
   entity.refunded = false
+
+  let DDcontract = DirectDepoistQueue.bind(event.address);
+  entity.fee = DDcontract.getDirectDeposit(event.params.nonce).fee;
 
   entity.save()
   

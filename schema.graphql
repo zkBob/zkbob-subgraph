@@ -8,6 +8,7 @@ type DirectDeposit @entity {
   zkAddress_diversifier: Bytes! # bytes10
   zkAddress_pk: Bytes! # bytes32
   deposit: BigInt! # uint64
+  fee: BigInt! # uint64
   bnInit: BigInt!
   tsInit: BigInt!
   txInit: Bytes!

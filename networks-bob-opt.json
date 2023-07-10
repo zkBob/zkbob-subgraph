@@ -1,0 +1,12 @@
+{
+    "optimism": {
+      "DDQueue": {
+        "address": "0x15B8C75c024acba8c114C21F42eb515A762c0014",
+        "startBlock": 86474193
+      },
+      "Pool": {
+        "address": "0x1CA8C2B9B20E18e86d5b9a72370fC6c91814c97C",
+        "startBlock": 86474193
+      }
+    }
+  }

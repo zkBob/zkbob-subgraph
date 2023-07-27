@@ -17,6 +17,101 @@ type DirectDeposit @entity {
   txClosed: Bytes
 }
 
+type ZkCommon @entity(immutable: true) {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  out_commit: BigInt! # uint256
+  witness: [BigInt!]! # uint256[8], transfer proof or delegated deposit proof
+  tree_root_after: BigInt! # uint256
+  tree_proof: [BigInt!]! # uint256[8]
+}
+
+# type DirectDepositMock @entity {
+#   id: String! # string(uint256)
+#   txClosed: Bytes
+# }
+
+interface Operation {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+}
+
+type DepositOperation implements Operation @entity(immutable: true) {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  nullifier: BigInt! # uint256
+  index: BigInt! # uint48
+  token_amount: BigInt! # uint64
+  fee: BigInt! # uint64
+}
+
+type TransferOperation implements Operation @entity(immutable: true) {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  nullifier: BigInt! # uint256
+  index: BigInt! # uint48
+  fee: BigInt! # uint64
+}
+
+type WithdrawalOperation implements Operation @entity(immutable: true)  {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  nullifier: BigInt! # uint256
+  index: BigInt! # uint48
+  energy_amount: BigInt! # uint112
+  token_amount: BigInt! # uint64
+  fee: BigInt! # uint64
+  native_amount: BigInt! # uint64
+  receiver: Bytes! # address
+}
+
+type PermittableDepositOperation implements Operation @entity(immutable: true) {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  nullifier: BigInt! # uint256
+  index: BigInt! # uint48
+  token_amount: BigInt! # uint64
+  fee: BigInt! # uint64
+  permit_deadline: BigInt! # uint64
+  permit_holder: Bytes! # address
+  sig: Bytes! # 2 * bytes32 
+}
+
+type DDBatchOperation implements Operation @entity(immutable: true) {
+  id: String! # string(uint256)
+  pooltx: PoolTx!
+  delegated_deposits: [DirectDeposit!]!
+}
+
+# type TxExtra @entity(immutable: true) {
+#   id: String! # string(uint256)
+#   pooltx: PoolTx!
+#   nullifier: BigInt # uint256
+#   index: BigInt # uint48
+#   energy_amount: BigInt # uint112
+#   token_amount: BigInt # uint64
+#   fee: BigInt # uint64
+#   native_amount: BigInt # uint64
+#   receiver: Bytes # address
+#   permit_deadline: BigInt # uint64
+#   permit_holder: Bytes # address
+#   sig: Bytes # 2 * bytes32 
+#   delegated_deposits: [DirectDepositMock!]
+# }
+
+type PoolTx @entity(immutable: true) {
+  id: String! # string(uint256)
+  tx: Bytes!
+  ts: BigInt!
+  all_messages_hash: Bytes!
+  type: Int!
+  message: Bytes!
+  gas_used: Int!
+  zk: ZkCommon!
+  operation: Operation!
+  calldata: Bytes!
+}
+
 type LastSyncBlock @entity {
   id: Bytes! 
   block: BigInt

@@ -56,7 +56,7 @@ export function handleCompleteDirectDepositBatch(
       deposit.save()
     }
     else {
-      log.warning('Deposit {} not found', [idx.toString()]);
+      log.error('Deposit {} not found', [idx.toString()]);
     }
 
   }
@@ -80,30 +80,8 @@ export function handleRefundDirectDeposit(
     deposit.save()
   }
   else {
-    log.warning('Deposit {} not found', [event.params.nonce.toString()]);
+    log.error('Deposit {} not found', [event.params.nonce.toString()]);
   }
 
   keepBlock(event.block.number)
 }
-
-// export function handleMessage(
-//   event: MessageEvent
-// ): void {
-//   let deposit = DirectDeposit.load(event.params.nonce.toString());
-
-//   if (deposit != null) {
-//     deposit.pending = false;
-//     deposit.refunded = true;
-
-//     deposit.bnClosed = event.block.number
-//     deposit.tsClosed = event.block.timestamp
-//     deposit.txClosed = event.transaction.hash
-
-//     deposit.save()
-//   }
-//   else {
-//     log.warning('Deposit {} not found', [event.params.nonce.toString()]);
-//   }
-
-//   keepBlock(event.block.number)
-// }

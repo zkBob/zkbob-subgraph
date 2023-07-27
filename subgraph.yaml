@@ -39,11 +39,12 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - LastSyncBlock
+        - PoolTx
       abis:
         - name: Pool
           file: ./abis/Pool.json
       eventHandlers:
         - event: Message(indexed uint256,indexed bytes32,bytes)
           handler: handleMessage
+          receipt: true
       file: ./src/pool.ts

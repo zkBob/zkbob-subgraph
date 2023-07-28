@@ -3,7 +3,8 @@ import {
   TX_TYPE_DEPOSIT,
   TX_TYPE_TRANSFER,
   TX_TYPE_WITHDRAWAL,
-  TX_TYPE_PERMITTABLE_DEPOSIT
+  TX_TYPE_PERMITTABLE_DEPOSIT,
+  BI_ZERO
 } from './constants'
 
 export class appendDirectDepositsArgs {
@@ -30,7 +31,7 @@ export class appendDirectDepositsArgs {
 
 export class CustomABIDecoder {
   static loadUint256(data: Bytes, pos: i32, length: i32 = 32): BigInt {
-    let value: BigInt = new BigInt(0);
+    let value: BigInt = BI_ZERO;
     for (let i: i32 = pos; i < pos + length; i++) {
       value = value.leftShift(8).bitOr(BigInt.fromI32(data[i]));
     }
@@ -248,20 +249,20 @@ export class CustomABIDecoder {
       }
     }
     let ids = new Array<BigInt>(1)
-    ids[0] = BigInt.fromU32(0)
+    ids[0] = BI_ZERO
     let proof = new Array<BigInt>(8)
-    proof[0] = BigInt.fromU32(0)
-    proof[1] = BigInt.fromU32(0)
-    proof[2] = BigInt.fromU32(0)
-    proof[3] = BigInt.fromU32(0)
-    proof[4] = BigInt.fromU32(0)
-    proof[5] = BigInt.fromU32(0)
-    proof[6] = BigInt.fromU32(0)
-    proof[7] = BigInt.fromU32(0)
+    proof[0] = BI_ZERO
+    proof[1] = BI_ZERO
+    proof[2] = BI_ZERO
+    proof[3] = BI_ZERO
+    proof[4] = BI_ZERO
+    proof[5] = BI_ZERO
+    proof[6] = BI_ZERO
+    proof[7] = BI_ZERO
     let retval: appendDirectDepositsArgs = new appendDirectDepositsArgs(
-      BigInt.fromU32(0),
+      BI_ZERO,
       ids,
-      BigInt.fromU32(0),
+      BI_ZERO,
       proof,
       proof
     )

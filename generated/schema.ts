@@ -52,6 +52,19 @@ export class DirectDeposit extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get index(): BigInt {
+    let value = this.get("index");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set index(value: BigInt) {
+    this.set("index", Value.fromBigInt(value));
+  }
+
   get pending(): boolean {
     let value = this.get("pending");
     if (!value || value.kind == ValueKind.NULL) {

@@ -16,6 +16,7 @@ export function handleSubmitDirectDeposit(
   let entity = new DirectDeposit(
     event.params.nonce.toString()
   )
+  entity.index = event.params.nonce
   entity.sender = event.params.sender
   entity.fallbackUser = event.params.fallbackUser
   entity.zkAddress_diversifier = event.params.zkAddress.diversifier

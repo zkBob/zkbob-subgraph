@@ -1,5 +1,6 @@
 type DirectDeposit @entity {
   id: String! # string(uint256)
+  index: BigInt!
   pending: Boolean!
   completed: Boolean!
   refunded: Boolean!

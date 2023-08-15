@@ -221,6 +221,23 @@ export class DirectDeposit extends Entity {
     this.set("txInit", Value.fromBytes(value));
   }
 
+  get payment(): string | null {
+    let value = this.get("payment");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set payment(value: string | null) {
+    if (!value) {
+      this.unset("payment");
+    } else {
+      this.set("payment", Value.fromString(<string>value));
+    }
+  }
+
   get bnClosed(): BigInt | null {
     let value = this.get("bnClosed");
     if (!value || value.kind == ValueKind.NULL) {
@@ -269,6 +286,106 @@ export class DirectDeposit extends Entity {
       this.unset("txClosed");
     } else {
       this.set("txClosed", Value.fromBytes(<Bytes>value));
+    }
+  }
+}
+
+export class Payment extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Payment entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Payment must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Payment", id.toString(), this);
+    }
+  }
+
+  static loadInBlock(id: string): Payment | null {
+    return changetype<Payment | null>(store.get_in_block("Payment", id));
+  }
+
+  static load(id: string): Payment | null {
+    return changetype<Payment | null>(store.get("Payment", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get sender(): Bytes | null {
+    let value = this.get("sender");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set sender(value: Bytes | null) {
+    if (!value) {
+      this.unset("sender");
+    } else {
+      this.set("sender", Value.fromBytes(<Bytes>value));
+    }
+  }
+
+  get delegated_deposit(): string {
+    let value = this.get("delegated_deposit");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set delegated_deposit(value: string) {
+    this.set("delegated_deposit", Value.fromString(value));
+  }
+
+  get token(): Bytes {
+    let value = this.get("token");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set token(value: Bytes) {
+    this.set("token", Value.fromBytes(value));
+  }
+
+  get note(): Bytes | null {
+    let value = this.get("note");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set note(value: Bytes | null) {
+    if (!value) {
+      this.unset("note");
+    } else {
+      this.set("note", Value.fromBytes(<Bytes>value));
     }
   }
 }

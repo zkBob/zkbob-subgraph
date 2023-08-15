@@ -48,3 +48,23 @@ dataSources:
           handler: handleMessage
           receipt: true
       file: ./src/pool.ts
+  - kind: ethereum
+    name: Payment
+    network: local
+    source:
+      abi: Payment
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Payment
+      abis:
+        - name: Payment
+          file: ./abis/Pay.json
+      eventHandlers:
+        - event: Pay(indexed uint256,indexed address,bytes,uint256,address,bytes)
+          handler: handlePayment
+      file: ./src/pay.ts

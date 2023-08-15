@@ -13,9 +13,18 @@ type DirectDeposit @entity {
   bnInit: BigInt!
   tsInit: BigInt!
   txInit: Bytes!
+  payment: Payment
   bnClosed: BigInt
   tsClosed: BigInt
   txClosed: Bytes
+}
+
+type Payment @entity(immutable: true) {
+  id: String! # string(uint256)
+  sender: Bytes
+  delegated_deposit: DirectDeposit!
+  token: Bytes!
+  note: Bytes
 }
 
 type ZkCommon @entity(immutable: true) {

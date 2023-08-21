@@ -2,11 +2,15 @@
     "sepolia": {
       "DDQueue": {
         "address": "0xE3Dd183ffa70BcFC442A0B9991E682cA8A442Ade",
-        "startBlock": 1793710
+        "startBlock": 2947090
       },
       "Pool": {
         "address": "0x3bd088C19960A8B5d72E4e01847791BD0DD1C9E6",
         "startBlock": 1793710
+      },
+      "Payment": {
+        "address": "0x85afa00f38aD5F353C2B80985407b8E8A27eA38f",
+        "startBlock": 4095520
       }
     }
   }

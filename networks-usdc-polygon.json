@@ -6,7 +6,11 @@
       },
       "Pool": {
         "address": "0x72e6B59D4a90ab232e55D4BB7ed2dD17494D62fB",
-        "startBlock": 39612722
+        "startBlock": 32845526
+      },
+      "Payment": {
+        "address": "0x76a911E76fC78F39e73cE0c532F8866ac28Dfe43",
+        "startBlock": 46188714
       }
     }
   }

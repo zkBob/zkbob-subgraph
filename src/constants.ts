@@ -1,5 +1,7 @@
 import { BigInt } from '@graphprotocol/graph-ts'
 
+export const TREE_INDEX_STEP = BigInt.fromU32(128)
+
 export const TX_TYPE_DEPOSIT = 0
 export const TX_TYPE_TRANSFER = 1
 export const TX_TYPE_WITHDRAWAL = 2

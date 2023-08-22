@@ -564,8 +564,8 @@ export class DepositOperation extends Entity {
     this.set("nullifier", Value.fromBigInt(value));
   }
 
-  get index(): BigInt {
-    let value = this.get("index");
+  get index_ref(): BigInt {
+    let value = this.get("index_ref");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -573,8 +573,8 @@ export class DepositOperation extends Entity {
     }
   }
 
-  set index(value: BigInt) {
-    this.set("index", Value.fromBigInt(value));
+  set index_ref(value: BigInt) {
+    this.set("index_ref", Value.fromBigInt(value));
   }
 
   get token_amount(): BigInt {
@@ -673,8 +673,8 @@ export class TransferOperation extends Entity {
     this.set("nullifier", Value.fromBigInt(value));
   }
 
-  get index(): BigInt {
-    let value = this.get("index");
+  get index_ref(): BigInt {
+    let value = this.get("index_ref");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -682,8 +682,8 @@ export class TransferOperation extends Entity {
     }
   }
 
-  set index(value: BigInt) {
-    this.set("index", Value.fromBigInt(value));
+  set index_ref(value: BigInt) {
+    this.set("index_ref", Value.fromBigInt(value));
   }
 
   get fee(): BigInt {
@@ -769,8 +769,8 @@ export class WithdrawalOperation extends Entity {
     this.set("nullifier", Value.fromBigInt(value));
   }
 
-  get index(): BigInt {
-    let value = this.get("index");
+  get index_ref(): BigInt {
+    let value = this.get("index_ref");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -778,8 +778,8 @@ export class WithdrawalOperation extends Entity {
     }
   }
 
-  set index(value: BigInt) {
-    this.set("index", Value.fromBigInt(value));
+  set index_ref(value: BigInt) {
+    this.set("index_ref", Value.fromBigInt(value));
   }
 
   get energy_amount(): BigInt {
@@ -920,8 +920,8 @@ export class PermittableDepositOperation extends Entity {
     this.set("nullifier", Value.fromBigInt(value));
   }
 
-  get index(): BigInt {
-    let value = this.get("index");
+  get index_ref(): BigInt {
+    let value = this.get("index_ref");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -929,8 +929,8 @@ export class PermittableDepositOperation extends Entity {
     }
   }
 
-  set index(value: BigInt) {
-    this.set("index", Value.fromBigInt(value));
+  set index_ref(value: BigInt) {
+    this.set("index_ref", Value.fromBigInt(value));
   }
 
   get token_amount(): BigInt {
@@ -1106,6 +1106,19 @@ export class PoolTx extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get index(): BigInt {
+    let value = this.get("index");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set index(value: BigInt) {
+    this.set("index", Value.fromBigInt(value));
   }
 
   get tx(): Bytes {

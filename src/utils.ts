@@ -45,7 +45,7 @@ function prepareDepositOperation(
   let operation = new DepositOperation(id)
   operation.pooltx = pooltx.id
   operation.nullifier = CustomABIDecoder.transferNullifier(data)
-  operation.index = CustomABIDecoder.transferIndex(data)
+  operation.index_ref = CustomABIDecoder.transferIndex(data)
   operation.token_amount = CustomABIDecoder.transferTokenAmount(data)
   operation.fee = CustomABIDecoder.fee(data)
   operation.save()
@@ -61,7 +61,7 @@ function prepareTransferOperation(
   let operation = new TransferOperation(id)
   operation.pooltx = pooltx.id
   operation.nullifier = CustomABIDecoder.transferNullifier(data)
-  operation.index = CustomABIDecoder.transferIndex(data)
+  operation.index_ref = CustomABIDecoder.transferIndex(data)
   operation.fee = CustomABIDecoder.fee(data)
   operation.save()
 
@@ -76,7 +76,7 @@ function prepareWithdrawalOperation(
   let operation = new WithdrawalOperation(id)
   operation.pooltx = pooltx.id
   operation.nullifier = CustomABIDecoder.transferNullifier(data)
-  operation.index = CustomABIDecoder.transferIndex(data)
+  operation.index_ref = CustomABIDecoder.transferIndex(data)
   operation.energy_amount = CustomABIDecoder.transferEnergyAmount(data)
   operation.token_amount = CustomABIDecoder.transferTokenAmount(data)
   operation.fee = CustomABIDecoder.fee(data)
@@ -95,7 +95,7 @@ function preparePermittableDepositOperation(
   let operation = new PermittableDepositOperation(id)
   operation.pooltx = pooltx.id
   operation.nullifier = CustomABIDecoder.transferNullifier(data)
-  operation.index = CustomABIDecoder.transferIndex(data)
+  operation.index_ref = CustomABIDecoder.transferIndex(data)
   operation.token_amount = CustomABIDecoder.transferTokenAmount(data)
   operation.fee = CustomABIDecoder.fee(data)
   operation.permit_deadline = CustomABIDecoder.permitDeadline(data)

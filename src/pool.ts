@@ -10,6 +10,7 @@ import {
   ZkCommon
 } from "../generated/schema"
 import { 
+  TREE_INDEX_STEP,
   TX_TYPE_DELEGATED_DEPOSIT
 } from './constants'
 
@@ -17,6 +18,7 @@ export function handleMessage(event: MessageEvent): void {
   const common_id = event.params.index.toString()
   let data: Bytes = event.transaction.input
   let entity = new PoolTx(common_id)
+  entity.index = event.params.index.minus(TREE_INDEX_STEP)
   entity.tx = event.transaction.hash
   entity.ts = event.block.timestamp
   entity.all_messages_hash = event.params.hash
